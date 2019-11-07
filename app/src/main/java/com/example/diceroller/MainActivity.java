@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     public void RandomNo(View view)
     {
       Random Ran = new Random();
-      int number = Ran.nextInt(6)+1;
+      int number = Ran.nextInt(5)+1;
       TextView mrtext = (TextView) findViewById(R.id.textView);
       String myString = String.valueOf(number);
         mrtext.setText(myString);
