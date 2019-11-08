@@ -15,9 +15,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
+    TextView p1;
+    ArrayList<String> question;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        p1 = (TextView)findViewById(R.id.counter);
+
+        question = new ArrayList<>();
+        question.add("If you could go anywhere in the world, where would you go?");
+        question.add("If you were stranded on a desert island, what three things would you want to take with you?");
+        question.add("If you could eat only one food for the rest of your life, what would that be?");
+        question.add("If you won a million dollars, what is the first thing you would buy?");
+        question.add("If you could spaned the day with one fictional character, who would it be?");
+        question.add("If you found a magic lantern and a genie gave you three wishes, what would you wish?");
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         mrtext.setText(myString);
 
         EditText myText;
-        myText = (EditText) findViewById(R.id.editText);
+        myText = (EditText) findViewById(R.id.input);
         int numberinput= Integer.parseInt(myText.getText().toString());
 
         if (numberinput < 1 || numberinput >6)
@@ -75,10 +90,21 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (numberinput == number)
         {
-            Toast.makeText(this, " Congratulation", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, " Congratulation!", Toast.LENGTH_SHORT).show();
+            int counter = Integer.parseInt(p1.getText().toString());
+            counter = counter +1;
+            p1.setText(String.valueOf(counter));
+
         }
 
+    }
 
+    public void roll_the_dice (View view){
+        Random Ran = new Random ();
+        int number = Ran.nextInt(6)+1;
+        String questions = question.get(number - 1);
+        TextView mrtext = (TextView) findViewById(R.id.textView5);
+        mrtext.setText(questions);
 
     }
 
